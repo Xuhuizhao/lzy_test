@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>夸父逐日</title>
+		<style>
+			#round{
+				width: 50px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				border-radius: 25px;;
+				background-color: skyblue;
+				color: white;
+				position: absolute;
+				top:0px;
+				left: 0px;
+				z-index: 9999;
+			}
+			#sun{
+				width: 80px;
+				height: 80px;
+				line-height: 80px;
+				text-align: center;
+				border-radius: 40px;
+				background-color: red;
+				position: absolute;
+				left: 200px;
+				top: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="round">夸父</div>
+		<div id="sun">太阳</div>
+	</body>
+	<script type="text/javascript">
+		var round = document.getElementById('round');
+		var sun = document.getElementById('sun');
+		var leaderX = 0;
+		var leaderY = 0;
+		var leader2X = 0;
+		var leader2Y = 0;
+		var x;
+		var y;
+		var x2;
+		var y2;
+		document.onmousedown = function(){
+				var event = event || window.event;
+				 x = event.clientX - (sun.offsetWidth/2);
+				 y = event.clientY - (sun.offsetHeight/2);
+				 
+				setInterval(function(){
+					console.log(leaderX,leaderY);
+					leaderX = leaderX + (x - leaderX)/200;
+					leaderY = leaderY + (y - leaderY)/200;
+					sun.style.left = leaderX + "px";
+					sun.style.top = leaderY + "px";
+
+				},1)
+		}
+		document.onmouseup = function(event){
+			var event = event || window.event;
+				 x2 = event.clientX - (round.offsetWidth/2);
+				 y2 = event.clientY - (round.offsetHeight/2);
+			
+			setInterval(function(){
+					console.log(leader2X,leader2Y);
+					leader2X = leader2X + (x2 - leader2X)/500;
+					leader2Y = leader2Y + (y2 - leader2Y)/500;
+					round.style.left = leader2X + "px";
+					round.style.top = leader2Y + "px";
+
+				},1)
+		}
+	</script>
+</html>
